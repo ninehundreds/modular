@@ -4,14 +4,16 @@
 object BuildPlugins {
     val android by lazy { "com.android.tools.build:gradle:${Versions.gradlePlugin}" }
     val kotlin by lazy { "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}" }
+    val kotlinSerialization by lazy { "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}" }
 }
 
 /**
  * To define dependencies
  */
 object Deps {
+
     val appCompat by lazy { "androidx.appcompat:appcompat:${Versions.appCompat}" }
-    val kotlin by lazy { "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}" }
+    val kotlinStdLib by lazy { "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}" }
     val kotlinCoreKtx by lazy { "androidx.core:core-ktx:${Versions.kotlinCoreKtx}" }
     val materialDesign by lazy { "com.google.android.material:material:${Versions.material}" }
     val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
@@ -33,5 +35,6 @@ object Deps {
     val ktorClientIOS by lazy { "io.ktor:ktor-client-ios:${Versions.ktor}" }
 
     val kermit by lazy { "co.touchlab:kermit:${Versions.kermit}" }
+    val securityCryptoKtx by lazy { "androidx.security:security-crypto-ktx:${Versions.crypto}" }
 
 }
