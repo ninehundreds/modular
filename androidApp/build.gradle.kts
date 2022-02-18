@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = ConfigData.compileSdkVersion
     defaultConfig {
         applicationId = "com.ninehundreds.modular.android"
-        minSdk = 21
-        targetSdk = 31
+        minSdk = ConfigData.minSdkVersion
+        targetSdk = ConfigData.targetSdkVersion
         versionCode = 1
         versionName = "1.0"
     }
@@ -21,7 +21,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation(Deps.materialDesign)
+    implementation(Deps.appCompat)
+    implementation(Deps.constraintLayout)
 }
