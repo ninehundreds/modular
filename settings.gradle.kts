@@ -10,3 +10,4 @@ rootProject.name = "Modular"
 include(":androidApp")
 include(":shared")
 include(":common")
+include(":network")
