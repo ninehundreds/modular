@@ -1,7 +1,5 @@
-
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization")
     id("com.android.library")
 }
 
@@ -14,25 +12,18 @@ kotlin {
         //iosSimulatorArm64() sure all ios dependencies support this target
     ).forEach {
         it.binaries.framework {
-            baseName = "network"
+            baseName = "modular"
+
+            export(project(":shared:network")) {
+                isStatic = true
+            }
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(Deps.kotlinStdLibCommon)
-                api(Deps.coroutinesCore)
-                api(Deps.serializationJson)
-
-                api(Deps.ktorClientCore)
-                api(Deps.ktorClientCIO)
-                api(Deps.ktorClientJson)
-                api(Deps.ktorClientSerialization)
-                api(Deps.ktorClientAuth)
-                api(Deps.ktorClientLogging)
-
-                api(project(":common"))
+                api(project(":shared:network"))
             }
         }
         val commonTest by getting {
@@ -41,13 +32,7 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(Deps.kotlinCoreKtx)
-                implementation(Deps.coroutinesAndroid)
-                api(Deps.ktorClientAndroid)
-            }
-        }
+        val androidMain by getting
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
@@ -58,9 +43,6 @@ kotlin {
         val iosArm64Main by getting
         //val iosSimulatorArm64Main by getting
         val iosMain by creating {
-            dependencies {
-                api(Deps.ktorClientIOS)
-            }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)

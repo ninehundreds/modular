@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared"))
+    implementation(project(":modular"))
     implementation(Deps.materialDesign)
     implementation(Deps.appCompat)
     implementation(Deps.constraintLayout)
