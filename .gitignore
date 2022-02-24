@@ -9,3 +9,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/shared/common/build/
+/shared/network/build/

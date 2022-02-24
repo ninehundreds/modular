@@ -8,4 +8,6 @@ pluginManagement {
 
 rootProject.name = "Modular"
 include(":androidApp")
-include(":shared")
+include(":modular")
+include(":shared:common")
+include(":shared:network")

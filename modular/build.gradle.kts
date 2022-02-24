@@ -12,12 +12,20 @@ kotlin {
         //iosSimulatorArm64() sure all ios dependencies support this target
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = "modular"
+
+            export(project(":shared:network")) {
+                isStatic = true
+            }
         }
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                api(project(":shared:network"))
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -28,7 +36,7 @@ kotlin {
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
-                implementation("junit:junit:4.13.2")
+                implementation(Deps.junit)
             }
         }
         val iosX64Main by getting
@@ -53,10 +61,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = ConfigData.compileSdkVersion
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 21
-        targetSdk = 31
+        minSdk = ConfigData.minSdkVersion
+        targetSdk = ConfigData.targetSdkVersion
     }
 }
